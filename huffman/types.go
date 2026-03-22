@@ -8,7 +8,7 @@ import (
 type Huffman struct {
 	F                  *os.FileInfo
 	FilePath           string
-	NumEncodings       uint16
+	NumEncodings       uint8
 	ByteFrequencyTable map[byte]uint64
 	LeafTable          map[node.Node]string
 	EncodingTable      map[byte]string

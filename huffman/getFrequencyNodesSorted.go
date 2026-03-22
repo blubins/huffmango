@@ -11,6 +11,7 @@ func (h *Huffman) getFrequencyNodesSorted() []Data {
 		})
 		h.NumEncodings++
 	}
+	h.NumEncodings-- // subtract 1 so 255 = 256 to fit inside uint8
 	// sort the slice into a min prio queue
 	sort.Slice(out, func(i, j int) bool {
 		return out[i].Freq < out[j].Freq

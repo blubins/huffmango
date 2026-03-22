@@ -22,12 +22,9 @@ func (h *Huffman) Encode(outputPath string) error {
 	reader := bufio.NewReader(fin)
 	writer := bufio.NewWriter(fout)
 
-	writer.Write([]byte{0}) // reserve first byte for padding count
-	//
-	writer.Write([]byte{0}) // 2nd and 3rd byte reserved for uint16
-	writer.Write([]byte{0}) // count for how many paths there are
+	writer.Write([]byte{0})                    // reserve first byte for padding count
+	writer.Write([]byte{byte(h.NumEncodings)}) // 2nd byte reserved for how many paths there are
 
-	// now need to write the encoding table
 	for byt, enc := range h.EncodingTable {
 		writer.Write([]byte{byt, ','})
 		writer.Write([]byte(enc))
