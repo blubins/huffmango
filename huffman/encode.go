@@ -1,0 +1,79 @@
+package huffmantree
+
+import (
+	"bufio"
+	"io"
+	"os"
+)
+
+func (h *Huffman) Encode(outputPath string) error {
+	fin, err := os.OpenFile(h.FilePath, os.O_RDONLY, 0)
+	if err != nil {
+		return err
+	}
+	defer fin.Close()
+
+	fout, err := os.OpenFile(outputPath, os.O_CREATE|os.O_TRUNC|os.O_RDWR, 0644)
+	if err != nil {
+		return err
+	}
+	defer fout.Close()
+
+	reader := bufio.NewReader(fin)
+	writer := bufio.NewWriter(fout)
+
+	writer.Write([]byte{0}) // reserve first byte for padding count
+	//
+	writer.Write([]byte{0}) // 2nd and 3rd byte reserved for uint16
+	writer.Write([]byte{0}) // count for how many paths there are
+
+	// now need to write the encoding table
+	for byt, enc := range h.EncodingTable {
+		writer.Write([]byte{byt, ','})
+		writer.Write([]byte(enc))
+		writer.Write([]byte{'|'})
+	}
+
+	var bitPos int = 0
+	var currByte byte
+	for {
+		b, err := reader.ReadByte()
+		if err != nil {
+			if err != io.EOF {
+				return err
+			}
+			break // EOF
+		}
+
+		encB := h.EncodingTable[b]
+		for _, r := range encB {
+			if r == '1' {
+				currByte |= 1 << (7 - bitPos)
+			}
+			bitPos++
+			if bitPos == 8 {
+				writer.WriteByte(currByte)
+				currByte = 0
+				bitPos = 0
+			}
+		}
+	}
+
+	paddingCount := byte(0)
+	if bitPos > 0 {
+		paddingCount = byte(8 - bitPos)
+		writer.WriteByte(currByte)
+	}
+
+	err = writer.Flush()
+	if err != nil {
+		return err
+	}
+
+	_, err = fout.WriteAt([]byte{paddingCount}, 0)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
