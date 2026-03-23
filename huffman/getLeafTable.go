@@ -1,8 +1,8 @@
 package huffmantree
 
 import (
-	"image-compression/linkedlist"
-	"image-compression/node"
+	"huffmango/linkedlist"
+	"huffmango/node"
 	"strings"
 )
 

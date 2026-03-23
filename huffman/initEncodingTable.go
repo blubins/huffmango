@@ -1,9 +1,9 @@
 package huffmantree
 
 import (
-	"image-compression/frequency"
-	"image-compression/linkedlist"
-	"image-compression/node"
+	"huffmango/frequency"
+	"huffmango/linkedlist"
+	"huffmango/node"
 	"os"
 )
 

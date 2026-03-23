@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	huffmantree "image-compression/huffman"
-	"image-compression/utils"
+	huffmantree "huffmango/huffman"
+	"huffmango/utils"
 	"os"
 	"time"
 )

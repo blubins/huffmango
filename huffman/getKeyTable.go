@@ -1,7 +1,7 @@
 package huffmantree
 
 import (
-	"image-compression/node"
+	"huffmango/node"
 )
 
 func GetKeyTable(leafTable map[node.Node]string) map[byte]string {

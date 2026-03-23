@@ -1,7 +1,7 @@
 package huffmantree
 
 import (
-	"image-compression/node"
+	"huffmango/node"
 	"os"
 )
 

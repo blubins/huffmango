@@ -1,3 +1,3 @@
-module image-compression
+module huffmango
 
 go 1.26.1
