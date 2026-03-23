@@ -9,6 +9,7 @@ type Huffman struct {
 	F                  *os.FileInfo
 	FilePath           string
 	NumEncodings       uint8
+	NumTotBytesWritten uint64
 	ByteFrequencyTable map[byte]uint64
 	LeafTable          map[node.Node]string
 	EncodingTable      map[byte]string
@@ -21,10 +22,13 @@ type Data struct {
 }
 
 type Stat struct {
-	NumBits            uint64
-	NumEncodedBits     uint64
-	PercentImprovement float64
-	AvgSymbolSize      float64
+	NumBits                  uint64
+	NumEncodedBits           uint64
+	NumTotBytesWritten       uint64
+	TableSize                uint64
+	PercentImprovement       float64
+	PercentActualImprovement float64
+	AvgSymbolSize            float64
 }
 
 func New() *Huffman {

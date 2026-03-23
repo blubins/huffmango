@@ -6,16 +6,16 @@ import (
 	"os"
 )
 
-func (h *Huffman) Encode(outputPath string) error {
+func (h *Huffman) Encode(outputPath string) (int, error) {
 	fin, err := os.OpenFile(h.FilePath, os.O_RDONLY, 0)
 	if err != nil {
-		return err
+		return 0, err
 	}
 	defer fin.Close()
 
 	fout, err := os.OpenFile(outputPath, os.O_CREATE|os.O_TRUNC|os.O_RDWR, 0644)
 	if err != nil {
-		return err
+		return 0, err
 	}
 	defer fout.Close()
 
@@ -24,12 +24,14 @@ func (h *Huffman) Encode(outputPath string) error {
 
 	writer.Write([]byte{0})                    // reserve first byte for padding count
 	writer.Write([]byte{byte(h.NumEncodings)}) // 2nd byte reserved for how many paths there are
+	bytesWritten := 2
 	// next is writing the encoder key table into the file before the encoded data
 	// byteValue,encodedByteValue|byteValue,encodedByteValue|...
 	for byt, enc := range h.EncodingTable {
 		writer.Write([]byte{byt, ','})
 		writer.Write([]byte(enc))
 		writer.Write([]byte{'|'})
+		bytesWritten += 3 + len(enc)
 	}
 
 	var bitPos int = 0
@@ -38,7 +40,7 @@ func (h *Huffman) Encode(outputPath string) error {
 		b, err := reader.ReadByte()
 		if err != nil {
 			if err != io.EOF {
-				return err
+				return 0, err
 			}
 			break // EOF
 		}
@@ -53,6 +55,7 @@ func (h *Huffman) Encode(outputPath string) error {
 				writer.WriteByte(currByte)
 				currByte = 0
 				bitPos = 0
+				bytesWritten++
 			}
 		}
 	}
@@ -61,17 +64,18 @@ func (h *Huffman) Encode(outputPath string) error {
 	if bitPos > 0 {
 		paddingCount = byte(8 - bitPos)
 		writer.WriteByte(currByte)
+		bytesWritten++
 	}
 
 	err = writer.Flush()
 	if err != nil {
-		return err
+		return 0, err
 	}
 
 	_, err = fout.WriteAt([]byte{paddingCount}, 0)
 	if err != nil {
-		return err
+		return 0, err
 	}
-
-	return nil
+	h.NumTotBytesWritten = uint64(bytesWritten)
+	return bytesWritten, nil
 }

@@ -2,11 +2,16 @@ package huffmantree
 
 import (
 	"bufio"
+	"fmt"
 	"io"
 	"os"
+	"strings"
 )
 
 func Decode(filepath, outputPath string) error {
+	if !strings.Contains(filepath, "_encoded") {
+		return fmt.Errorf("invalid file extension, expected example.png_huffman, got %s", filepath)
+	}
 	fin, err := os.OpenFile(filepath, os.O_RDONLY, 0)
 	if err != nil {
 		return err
