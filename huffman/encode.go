@@ -24,7 +24,8 @@ func (h *Huffman) Encode(outputPath string) error {
 
 	writer.Write([]byte{0})                    // reserve first byte for padding count
 	writer.Write([]byte{byte(h.NumEncodings)}) // 2nd byte reserved for how many paths there are
-
+	// next is writing the encoder key table into the file before the encoded data
+	// byteValue,encodedByteValue|byteValue,encodedByteValue|...
 	for byt, enc := range h.EncodingTable {
 		writer.Write([]byte{byt, ','})
 		writer.Write([]byte(enc))

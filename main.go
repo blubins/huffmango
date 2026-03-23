@@ -32,9 +32,14 @@ func main() {
 	fmt.Printf("stats.NumBits: %v\n", stats.NumBits)
 	fmt.Printf("stats.NumEncodedBits: %v\n", stats.NumEncodedBits)
 	fmt.Printf("stats.PercentImprovement: %v\n", stats.PercentImprovement)
-	fmt.Printf("Tree.NumEncodings: %v\n", Tree.NumEncodings)
-	err = Tree.Encode(outputPath)
+	fmt.Printf("Tree.NumEncodings: %v\n", uint16(Tree.NumEncodings)+1)
+	err = Tree.Encode(outputPath + "_encoded")
 	if err != nil {
 		fmt.Printf("Error encoding file: %s\n", err.Error())
+	}
+
+	err = huffmantree.Decode(outputPath, outputPath+"_decoded")
+	if err != nil {
+		fmt.Printf("Error decoding file: %s\n", err.Error())
 	}
 }
