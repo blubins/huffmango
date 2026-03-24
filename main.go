@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	huffmantree "huffmango/huffman"
+	"huffmango/renderer"
 	"huffmango/utils"
 	"os"
 	"time"
@@ -35,6 +36,8 @@ func main() {
 		if conf.ShouldDisplayStats {
 			Tree.PrintStats(duration)
 		}
+
+		renderer.Render(Tree.Root)
 		return
 	}
 
