@@ -15,7 +15,7 @@ func (h *Huffman) Stat() Stat {
 		tableSize += uint64(3 + len(enc))
 	}
 
-	return Stat{
+	s := Stat{
 		NumBits:                  numBits,
 		NumEncodedBits:           numEncodedBits,
 		NumTotBytesWritten:       h.NumTotBytesWritten,
@@ -24,4 +24,7 @@ func (h *Huffman) Stat() Stat {
 		PercentActualImprovement: 1 - float64(h.NumTotBytesWritten*8)/float64(numBits),
 		AvgSymbolSize:            percentImprovedOverall * 8,
 	}
+
+	h.Stats = &s
+	return s
 }

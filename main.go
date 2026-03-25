@@ -15,7 +15,7 @@ func main() {
 		return
 	}
 
-	// if encode
+	// if is encode
 	if !conf.IsDecode {
 		begin := time.Now()
 
@@ -35,9 +35,13 @@ func main() {
 
 		if conf.ShouldDisplayStats {
 			Tree.PrintStats(duration)
-		}
 
-		renderer.Render(Tree.Root)
+			err = renderer.CreateHTMLView(Tree.Root, Tree.Stats, conf.OutputPath+".html")
+			if err != nil {
+				fmt.Printf("Error creating html view: %s\n", err.Error())
+			}
+			fmt.Printf("HTML File exported to %s.html", conf.OutputPath)
+		}
 		return
 	}
 

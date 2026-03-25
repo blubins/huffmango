@@ -13,22 +13,23 @@ type Huffman struct {
 	ByteFrequencyTable map[byte]uint64
 	LeafTable          map[node.Node]string
 	EncodingTable      map[byte]string
+	Stats              *Stat // populates after Huffman.Stats() is called
 	Root               *node.Node
 }
 
 type Data struct {
-	B    byte   // byte value
-	Freq uint64 // frequency
+	B    byte
+	Freq uint64
 }
 
 type Stat struct {
-	NumBits                  uint64
-	NumEncodedBits           uint64
-	NumTotBytesWritten       uint64
+	NumBits                  uint64 // number of actual ingested bits
+	NumEncodedBits           uint64 // number of encoded bits
+	NumTotBytesWritten       uint64 // encoded bits + translation table size
 	TableSize                uint64
-	PercentImprovement       float64
-	PercentActualImprovement float64
-	AvgSymbolSize            float64
+	PercentImprovement       float64 // percent improvement num bits vs. encoded bits
+	PercentActualImprovement float64 // percent improvement num bits vs. encoded bits + table size
+	AvgSymbolSize            float64 // average byte value encoded size always < 8
 }
 
 func New() *Huffman {
