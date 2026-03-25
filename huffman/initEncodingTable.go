@@ -1,6 +1,7 @@
 package huffmantree
 
 import (
+	"fmt"
 	"huffmango/frequency"
 	"huffmango/linkedlist"
 	"huffmango/node"
@@ -16,6 +17,10 @@ func (h *Huffman) InitEncodingTable(filePath string) error {
 	}
 	h.F = &stat
 
+	if stat.Size() == 0 {
+		return fmt.Errorf("empty file")
+	}
+
 	data, err := os.ReadFile(h.FilePath)
 	if err != nil {
 		return err
@@ -25,7 +30,7 @@ func (h *Huffman) InitEncodingTable(filePath string) error {
 	h.ByteFrequencyTable = tbl
 
 	frequencyNodes := h.getFrequencyNodesSorted()
-	//huffman tree construction
+	// huffman tree construction
 	// create a linked list we will treat as a queue to dequeue from
 	nodeTreeList := linkedlist.New()
 	// fill our queue up with our frequency nodes
@@ -73,11 +78,13 @@ func (h *Huffman) InitEncodingTable(filePath string) error {
 		)
 
 	}
-	// last node left is the root of the huffman tree
-	h.Root = nodeTreeList.DeleteNode(1).Data.(*node.Node)
 
-	h.LeafTable = GetLeafTable(h.Root)
-	h.EncodingTable = GetKeyTable(h.LeafTable)
+	// last node left is the root of the huffman tree
+	if nodeTreeList.Size() > 0 {
+		h.Root = nodeTreeList.DeleteNode(1).Data.(*node.Node)
+		h.LeafTable = GetLeafTable(h.Root)
+		h.EncodingTable = GetKeyTable(h.LeafTable)
+	}
 
 	return nil
 }
