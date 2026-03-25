@@ -83,6 +83,14 @@ func (h *Huffman) InitEncodingTable(filePath string) error {
 	if nodeTreeList.Size() > 0 {
 		h.Root = nodeTreeList.DeleteNode(1).Data.(*node.Node)
 		h.LeafTable = GetLeafTable(h.Root)
+		// only 1 byte value edge case
+		// check if there is only 1 leaf in the entire table assign it 0 path
+		if len(h.LeafTable) == 1 {
+			for k := range h.LeafTable {
+				h.LeafTable[k] = "0"
+			}
+		}
+
 		h.EncodingTable = GetKeyTable(h.LeafTable)
 	}
 
