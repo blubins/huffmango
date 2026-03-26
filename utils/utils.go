@@ -14,8 +14,8 @@ func printProgInfo() {
 	fmt.Println("  -o <outputpath>   path for the output file")
 	fmt.Println()
 	fmt.Println("Flags:")
-	fmt.Println("  -r                render the huffman tree and compression stats")
-	fmt.Println("  -d                decode a given huffmantree encoded file")
+	fmt.Println("  -viewer                render the huffman tree and compression stats")
+	fmt.Println("  -decode                decode a given huffmantree encoded file")
 	fmt.Println()
 	fmt.Println("Examples:")
 	fmt.Println("  huffman image.png -o image.png")
@@ -34,7 +34,8 @@ func HandleArgv(osArgs []string) *Config {
 	return &Config{
 		InputFile:          args[0],
 		OutputPath:         args[2],
-		IsDecode:           slices.Contains(args, "-d"), // check for -d flag, default encode
-		ShouldDisplayStats: slices.Contains(args, "-s"), // check for -s flag
+		IsDecode:           slices.Contains(args, "-decode"), // check for -d flag, default encode
+		ShouldDisplayStats: slices.Contains(args, "-stats"),  // check for -s flag
+		ShouldGenerateHTML: slices.Contains(args, "-viewer"),
 	}
 }

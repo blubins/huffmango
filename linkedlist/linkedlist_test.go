@@ -15,7 +15,7 @@ func TestSize(t *testing.T) {
 	if l.Size() != 1 {
 		t.Errorf("expected size 1, got %d", l.Size())
 	}
-	for i := 0; i < 300; i++ {
+	for i := range 300 {
 		l.Append(i)
 	}
 	if l.Size() != 301 {

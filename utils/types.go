@@ -5,4 +5,5 @@ type Config struct {
 	OutputPath         string
 	IsDecode           bool
 	ShouldDisplayStats bool
+	ShouldGenerateHTML bool
 }

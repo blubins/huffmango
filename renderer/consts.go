@@ -16,7 +16,7 @@ const (
 	CIRCLE_FILL_COLOR   string = "#578cff"
 	CIRCLE_RADIUS       int    = 45
 	STROKE_WIDTH        int    = 1
-	STROKE_COLOR        string = "#cecece"
+	STROKE_COLOR        string = "#cecece85"
 	TEXT_COLOR          string = "#FFFFFF"
 	NODE_TEXT_FONT_SIZE int    = 12
 )

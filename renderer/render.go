@@ -81,7 +81,7 @@ func inOrderSVGAppend(n *node.Node, positions map[*node.Node]vector2, builder *s
 	// draw frequency text underneath the byte value
 	fmt.Fprintf(
 		builder,
-		`<text x="%d" y="%d" class="nodeText" fill=%s>Freq: %d</text>%s`,
+		`<text x="%d" y="%d" class="nodeText" fill=%s>F: %d</text>%s`,
 		pos.x-int32(CIRCLE_RADIUS)+20,
 		pos.y+int32(CIRCLE_RADIUS)+int32(NODE_TEXT_FONT_SIZE)-5,
 		TEXT_COLOR,
