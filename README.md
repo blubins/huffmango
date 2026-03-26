@@ -24,7 +24,7 @@ huffmango myfile.png -o myfile.png
 ### Encode with stats and tree visualization
 
 ```bash
-huffmango myfile.png -o myfile.png -s
+huffmango myfile.png -o myfile.png -stats -viewer
 ```
 This prints compression statistics and generates an interactive `huffman_tree.html` to the same name and directory as the output parameter.
 
