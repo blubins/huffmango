@@ -15,18 +15,21 @@ func main() {
 		return
 	}
 
-	// if is encode
+	// if should encode
 	if !conf.IsDecode {
+		// start recording execution time
 		begin := time.Now()
 
 		Tree := huffmantree.New()
 
+		// create our leaf table and encoding table for compression
 		err := Tree.InitEncodingTable(conf.InputFile)
 		if err != nil {
 			fmt.Printf("Error initializing encoding table: %s\n", err.Error())
 			return
 		}
 
+		// encode the file from argv
 		_, err = Tree.Encode(conf.OutputPath + "_encoded")
 		if err != nil {
 			fmt.Printf("Error encoding file: %s\n", err.Error())
@@ -34,6 +37,7 @@ func main() {
 		}
 		duration := time.Since(begin)
 
+		// display stats if applicable
 		if conf.ShouldDisplayStats {
 			Tree.PrintStats(&duration)
 			if conf.ShouldGenerateHTML {
@@ -48,7 +52,7 @@ func main() {
 		return
 	}
 
-	// if decode
+	// if should decode
 	err := huffmantree.Decode(conf.InputFile, conf.OutputPath+"_decoded")
 	if err != nil {
 		fmt.Printf("Error decoding file: %s\n", err.Error())

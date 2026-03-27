@@ -19,8 +19,8 @@ func printProgInfo() {
 	fmt.Println()
 	fmt.Println("Examples:")
 	fmt.Println("  huffman image.png -o image.png")
-	fmt.Println("  huffman image.png -o image.png -r")
-	fmt.Println("  huffman image.png_encoded -o image.png -d")
+	fmt.Println("  huffman image.png -o image.png -viewer")
+	fmt.Println("  huffman image.png_encoded -o image.png -decode")
 }
 
 func HandleArgv(osArgs []string) *Config {
