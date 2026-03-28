@@ -2,6 +2,7 @@ package huffmantree
 
 import "sort"
 
+// returns an array of bye values and their frequencies
 func (h *Huffman) getFrequencyNodesSorted() []Data {
 	var out []Data
 	var numEncodings uint16

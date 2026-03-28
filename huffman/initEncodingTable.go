@@ -8,6 +8,7 @@ import (
 	"os"
 )
 
+// initializes the huffman encoding table required for encoding data
 func (h *Huffman) InitEncodingTable(filePath string) error {
 	h.FilePath = filePath
 

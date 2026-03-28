@@ -11,6 +11,7 @@ var HTML_SVG_FOOTER string
 //go:embed stats.html
 var HTML_STATS_BOX string
 
+// constants for svg output viewer
 const (
 	BACKGROUND_COLOR    string = "#000000"
 	CIRCLE_FILL_COLOR   string = "#578cff"

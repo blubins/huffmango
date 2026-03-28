@@ -1,5 +1,7 @@
 package huffmantree
 
+// returns the stats of a Huffman encoding function
+// Huffman.Encode() must be executed before trying to call this or it will fail
 func (h *Huffman) Stat() Stat {
 	var numEncodedBits uint64
 	for byt, fq := range h.ByteFrequencyTable {

@@ -1,5 +1,6 @@
 package utils
 
+// os argument config
 type Config struct {
 	InputFile          string
 	OutputPath         string

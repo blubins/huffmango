@@ -5,6 +5,7 @@ import (
 	"slices"
 )
 
+// prints information on how to use the huffman program
 func printProgInfo() {
 	fmt.Println("Usage: huffman <inputfile> -o <outputpath> [flags]")
 	fmt.Println()
@@ -23,6 +24,7 @@ func printProgInfo() {
 	fmt.Println("  huffman image.png_encoded -o image.png -decode")
 }
 
+// handles os arguments passed from caller
 func HandleArgv(osArgs []string) *Config {
 	args := osArgs[1:] // strip binary call
 

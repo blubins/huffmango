@@ -6,6 +6,8 @@ import (
 	"os"
 )
 
+// main huffman encoding function used to encode data
+// returns the amount of bytes written or error if any
 func (h *Huffman) Encode(outputPath string) (int, error) {
 	fin, err := os.OpenFile(h.FilePath, os.O_RDONLY, 0)
 	if err != nil {

@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// creates a map of leaf node pointers to binary paths
 func getLeafTableHelper(root *node.Node, stack *linkedlist.LinkedList, key *map[node.Node]string) {
 	if root == nil {
 		return

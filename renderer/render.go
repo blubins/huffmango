@@ -70,7 +70,7 @@ func inOrderSVGAppend(n *node.Node, positions map[*node.Node]vector2, builder *s
 	// byte value
 	fmt.Fprintf(
 		builder,
-		`<text x="%d" y="%d" class="nodeText" fill=%s>B: %b</text>%s`,
+		`<text x="%d" y="%d" class="nodeText" fill=%s>0x%x</text>%s`,
 		pos.x-int32(CIRCLE_RADIUS)+20,
 		pos.y+int32(CIRCLE_RADIUS)-5,
 		TEXT_COLOR,

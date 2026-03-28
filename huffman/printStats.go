@@ -5,6 +5,7 @@ import (
 	"time"
 )
 
+// prints the metrics for a Huffman encoding
 func (h *Huffman) PrintStats(duration *time.Duration) {
 	for b, path := range h.EncodingTable {
 		fmt.Printf("B: %-5v Path: %s\n", b, path)

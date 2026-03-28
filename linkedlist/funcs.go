@@ -5,14 +5,17 @@ import (
 	"strings"
 )
 
+// returns a pointer to a new linked list
 func New() *LinkedList {
 	return &LinkedList{}
 }
 
+// returns the size of the linked list
 func (l *LinkedList) Size() int64 {
 	return l.size
 }
 
+// returns string representation of the linked list inorder
 func (l *LinkedList) String() string {
 	var out strings.Builder
 	iterator := l.head
@@ -25,6 +28,7 @@ func (l *LinkedList) String() string {
 	return result
 }
 
+// prints the linked list to stdout
 func (l *LinkedList) Print() {
 	var out strings.Builder
 	iterator := l.head
@@ -38,6 +42,7 @@ func (l *LinkedList) Print() {
 	fmt.Println(result + "}")
 }
 
+// inserts into the linked list sorted based off filter function parameter
 func (l *LinkedList) InsertSorted(data any, less func(a, b any) bool) {
 	newNode := &ListNode{Data: data}
 
@@ -70,6 +75,7 @@ func (l *LinkedList) InsertSorted(data any, less func(a, b any) bool) {
 	l.size++
 }
 
+// appends an item to the end of the linked list
 func (l *LinkedList) Append(data any) {
 	newNode := ListNode{
 		Data: data,
@@ -87,6 +93,7 @@ func (l *LinkedList) Append(data any) {
 	l.size++
 }
 
+// deletes an item at a specified index of the linked list
 func (l *LinkedList) DeleteNode(pos int) *ListNode {
 	if pos < 1 || l.head == nil {
 		return nil
