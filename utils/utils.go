@@ -15,12 +15,14 @@ func printProgInfo() {
 	fmt.Println("  -o <outputpath>   path for the output file")
 	fmt.Println()
 	fmt.Println("Flags:")
+	fmt.Println("  -stats                 display the compression statistics to console")
 	fmt.Println("  -viewer                render the huffman tree and compression stats")
 	fmt.Println("  -decode                decode a given huffmantree encoded file")
 	fmt.Println()
 	fmt.Println("Examples:")
 	fmt.Println("  huffman image.png -o image.png")
-	fmt.Println("  huffman image.png -o image.png -viewer")
+	fmt.Println("  huffman image.png -o image.png -stats")
+	fmt.Println("  huffman image.png -o image.png -stats -viewer")
 	fmt.Println("  huffman image.png_encoded -o image.png -decode")
 }
 
@@ -28,6 +30,7 @@ func printProgInfo() {
 func HandleArgv(osArgs []string) *Config {
 	args := osArgs[1:] // strip binary call
 
+	// if invalid cli arguments display the help information
 	if len(args) < 3 || args[1] != "-o" {
 		printProgInfo()
 		return nil

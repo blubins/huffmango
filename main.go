@@ -47,6 +47,7 @@ func main() {
 					return
 				}
 				fmt.Printf("HTML File exported to %s.html", conf.OutputPath)
+				return
 			}
 		}
 		return

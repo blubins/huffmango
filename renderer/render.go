@@ -90,6 +90,7 @@ func inOrderSVGAppend(n *node.Node, positions map[*node.Node]vector2, builder *s
 	)
 }
 
+// made svg html view creator function
 func CreateHTMLView(root *node.Node, stats *huffmantree.Stat, outputPath string) error {
 	nodes := make(map[*node.Node]vector2)
 	counter := int32(1)

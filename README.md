@@ -47,9 +47,10 @@ import (
 )
 
 func main() {
+	// Start keeping track of execution time
 	begin := time.Now()
 
-	// create a new tree
+	// Create a new tree
 	h := huffmantree.New()
 	
 	// Build the Huffman tree from a file any format
@@ -63,13 +64,15 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
+	// Get duration of execution
 	duration := time.Since(begin)
 
 	// Calculate and display the compression stats with duration taken
 	stats := h.Stat()
+	
+	// Display the stats to the console
 	h.PrintStats(&duration)
-
-
 
 	// Generate interactive HTML tree visualization html page
 	renderer.CreateHTMLView(h.Root, &stats, "huffman_tree.html")
