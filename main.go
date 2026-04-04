@@ -54,7 +54,7 @@ func main() {
 	}
 
 	// if should decode
-	err := huffmantree.Decode(conf.InputFile, conf.OutputPath+"_decoded")
+	err := huffmantree.Decode(conf.InputFile, conf.OutputPath)
 	if err != nil {
 		fmt.Printf("Error decoding file: %s\n", err.Error())
 		return

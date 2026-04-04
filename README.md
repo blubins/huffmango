@@ -9,7 +9,7 @@ Golang [Huffman coding](https://en.wikipedia.org/wiki/Huffman_coding) compressio
 ### Installation
 
 ```bash
-git clone https://github.com/blubins/huffmango.git
+git clone https://github.com/blubbins/huffmango.git
 cd huffmango
 go build -o huffmango .
 ```
@@ -44,6 +44,7 @@ import (
 	huffmantree "huffmango/huffman"
 	"huffmango/renderer"
 	"fmt"
+	"time"
 )
 
 func main() {
@@ -120,8 +121,10 @@ When using the `-stats` flag with the encoder, the following statistics are disp
 | PercentImprovement | Compression ratio of encoded bits vs original bits |
 | PercentActualImprovement | Compression ratio including table overhead |
 | AvgSymbolSize | Average bits per byte in the encoded output, always <= 8 for effective compression |
+| Shannon Entropy | C.E. Shannon's theoretical minimum average bits required to encode each byte |
 
 ### HTML Tree Viewer
+> Requires `-stats flag`
 
 The `-viewer` flag generates an interactive HTML file with the encoders statistics and tree visualization:
 - Pan and zoom (mouse drag + scroll wheel)

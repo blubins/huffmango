@@ -12,7 +12,7 @@ import (
 // returns an error if any
 func Decode(filepath, outputPath string) error {
 	if !strings.Contains(filepath, "_encoded") {
-		return fmt.Errorf("invalid file extension, expected example.png_huffman, got %s", filepath)
+		return fmt.Errorf("invalid file extension, expected file ending in _encoded, got %s", filepath)
 	}
 	fin, err := os.OpenFile(filepath, os.O_RDONLY, 0)
 	if err != nil {
