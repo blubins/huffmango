@@ -30,6 +30,7 @@ type Stat struct {
 	PercentImprovement       float64 // percent improvement num bits vs. encoded bits
 	PercentActualImprovement float64 // percent improvement num bits vs. encoded bits + table size
 	AvgSymbolSize            float64 // average byte value encoded size always < 8
+	ShannonEntropy           float64 // theoretical minimum average bits needed to encode each byte
 }
 
 func New() *Huffman {

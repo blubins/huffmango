@@ -26,6 +26,7 @@ func (h *Huffman) Stat() Stat {
 		PercentImprovement:       1 - float64(numEncodedBits)/float64(numBits),
 		PercentActualImprovement: 1 - float64(h.NumTotBytesWritten*8)/float64(numBits),
 		AvgSymbolSize:            float64(numEncodedBits) / float64(totalSymbols),
+		ShannonEntropy:           h.ShannonEntropy(),
 	}
 
 	h.Stats = &s

@@ -13,6 +13,7 @@ func (h *Huffman) PrintStats(duration *time.Duration) {
 	stats := h.Stat()
 
 	fmt.Printf("%-32s %.4f\n", "Average Symbol Size (Bits)", stats.AvgSymbolSize)
+	fmt.Printf("%-32s %.4f\n", "Shannon Entropy (Bits)", stats.ShannonEntropy)
 	fmt.Printf("%-32s %d\n", "Input Read (Bits)", stats.NumBits)
 	fmt.Printf("%-32s %d\n", "Output Write (Bits)", stats.NumEncodedBits)
 	fmt.Printf("%-32s %.4f\n", "Theoretical Percent improvement", stats.PercentImprovement)
