@@ -17,7 +17,7 @@ func (h *Huffman) InitEncodingTable(filePath string) error {
 		return err
 	}
 	h.F = &stat
-
+	// catch edge case if the file is empty
 	if stat.Size() == 0 {
 		return fmt.Errorf("empty file")
 	}
@@ -27,6 +27,7 @@ func (h *Huffman) InitEncodingTable(filePath string) error {
 		return err
 	}
 
+	// build the frequency byte table
 	tbl := frequency.GetByteFrequency(&data)
 	h.ByteFrequencyTable = tbl
 

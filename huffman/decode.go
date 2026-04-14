@@ -11,9 +11,11 @@ import (
 // main decoding function for a Huffman encoded file
 // returns an error if any
 func Decode(filepath, outputPath string) error {
+	// sorta half baked solution for detecting invalid files
 	if !strings.Contains(filepath, "_encoded") {
 		return fmt.Errorf("invalid file extension, expected file ending in _encoded, got %s", filepath)
 	}
+	// open the input file
 	fin, err := os.OpenFile(filepath, os.O_RDONLY, 0)
 	if err != nil {
 		return err
@@ -63,7 +65,7 @@ func Decode(filepath, outputPath string) error {
 		numParsedBars++
 		decodingTable[string(currPath)] = currByteEnc
 	}
-
+	// create or open up output file
 	fout, err := os.OpenFile(outputPath, os.O_CREATE|os.O_TRUNC|os.O_RDWR, 0644)
 	if err != nil {
 		return err
@@ -71,8 +73,9 @@ func Decode(filepath, outputPath string) error {
 	defer fout.Close()
 
 	writer := bufio.NewWriter(fout)
-
 	paddingCount := reserve[0]
+
+	// remaining raw encoded bytes from the file, not including encoder table or reserve bytes
 	remaining, err := io.ReadAll(reader)
 	if err != nil {
 		return err

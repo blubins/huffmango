@@ -64,6 +64,7 @@ func (l *LinkedList) InsertSorted(data any, less func(a, b any) bool) {
 		cur = cur.Next
 	}
 
+	// case for new tail
 	newNode.Next = cur.Next
 	newNode.Prev = cur
 	if cur.Next != nil {
