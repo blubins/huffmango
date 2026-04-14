@@ -53,10 +53,12 @@ func Decode(filepath, outputPath string) error {
 		// read path until '|'
 		var currPath []byte
 		for {
+			// read in individual byte
 			b, err := reader.ReadByte()
 			if err != nil {
 				return err
 			}
+			// check if its a pipe, if so then break, binary path is complete
 			if b == '|' {
 				break
 			}
@@ -86,10 +88,12 @@ func Decode(filepath, outputPath string) error {
 	bitIndex := 0
 	// decode alg
 	for _, b := range remaining {
+		// iterate through all 8 bits in the byte
 		for bit := 7; bit >= 0; bit-- {
 			if bitIndex >= totalBits {
 				break
 			}
+			// check if this bit pos is 0 or 1 and write the path taken
 			if b&(1<<bit) != 0 {
 				currPath += "1"
 			} else {

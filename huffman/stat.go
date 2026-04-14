@@ -5,6 +5,7 @@ package huffmantree
 func (h *Huffman) Stat() Stat {
 	var numEncodedBits uint64
 	var totalSymbols uint64
+	// create a byte frequency table
 	for byt, fq := range h.ByteFrequencyTable {
 		numEncodedBits += uint64(len(h.EncodingTable[byt])) * fq
 		totalSymbols += fq

@@ -40,12 +40,15 @@ func main() {
 		// display stats if applicable
 		if conf.ShouldDisplayStats {
 			Tree.PrintStats(&duration)
+
+			// generate the html svg tree viewer if should
 			if conf.ShouldGenerateHTML {
 				err = renderer.CreateHTMLView(Tree.Root, Tree.Stats, conf.OutputPath+".html")
 				if err != nil {
 					fmt.Printf("Error creating html view: %s\n", err.Error())
 					return
 				}
+
 				fmt.Printf("HTML File exported to %s.html", conf.OutputPath)
 				return
 			}

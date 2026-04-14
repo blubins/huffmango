@@ -20,6 +20,7 @@ func getLeafTableHelper(root *node.Node, stack *linkedlist.LinkedList, key *map[
 	// left branch taken
 	stack.Append(0)
 	getLeafTableHelper(root.Left, stack, key)
+	// popping the stack
 	stack.DeleteNode(int(stack.Size()))
 	// right branch taken
 	stack.Append(1)

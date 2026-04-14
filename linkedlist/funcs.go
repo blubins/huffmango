@@ -96,26 +96,29 @@ func (l *LinkedList) Append(data any) {
 
 // deletes an item at a specified index of the linked list
 func (l *LinkedList) DeleteNode(pos int) *ListNode {
+	// check if invalid index or list is empty
 	if pos < 1 || l.head == nil {
 		return nil
 	}
-
+	// start at the head
 	tmp := l.head
-
+	// go to the node we want to delete with null checking
 	for i := 1; i < pos && tmp != nil; i++ {
 		tmp = tmp.Next
 	}
-
+	// make sure its not 1 off and still null
 	if tmp == nil {
 		return nil
 	}
-
+	// assign prev node next to next
 	if tmp.Prev != nil {
 		tmp.Prev.Next = tmp.Next
 	} else {
+		// case for new head
 		l.head = tmp.Next
 	}
 
+	// case for new tail
 	if tmp.Next != nil {
 		tmp.Next.Prev = tmp.Prev
 	} else {
